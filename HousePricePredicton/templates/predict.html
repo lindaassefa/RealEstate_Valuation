@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Valuation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #F5F5DC;
+            background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+        }
+        header {
+            background-color: #2E8B57;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px; /* Decreased font size */
+            color: #F5F5DC;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        main {
+            max-width: 600px; /* Decreased max-width */
+            margin: 40px auto;
+            padding: 20px; /* Decreased padding */
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        main::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(45deg, #2E8B57, #F5F5DC);
+            z-index: -1;
+            transform: rotate(-2deg);
+        }
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px; /* Decreased font size */
+            color: #2E8B57;
+            margin-bottom: 20px; /* Decreased margin */
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        form {
+            display: grid;
+            grid-gap: 15px; /* Decreased grid-gap */
+        }
+        label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #2E8B57;
+            font-size: 14px; /* Decreased font size */
+        }
+        input[type="number"],
+        input[type="text"] {
+            padding: 10px; /* Decreased padding */
+            border: 2px solid #2E8B57;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px; /* Decreased font size */
+            background-color: #F5F5DC;
+            color: #2E8B57;
+        }
+        button {
+            padding: 10px 20px; /* Decreased padding */
+            background-color: #2E8B57;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px; /* Decreased font size */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        button:hover {
+            background-color: #1E6B40;
+            transform: scale(1.05);
+        }
+        #valuation-result {
+            margin-top: 20px; /* Decreased margin-top */
+            padding: 20px; /* Decreased padding */
+            background-color: #2E8B57;
+            color: white;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px; /* Increased font size */
+            font-weight: 700;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            background-color: #2E8B57;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px; /* Decreased font size */
+            margin-top: 40px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Real Estate Valuation</h1>
+    </header>
+
+    <main>
+        <h2>Discover Your Property's Worth</h2>
+        <form id="valuation-form" action="/predict/result" method="GET">
+            <label for="bedrooms">Number of Bedrooms:</label>
+            <input type="number" id="bedrooms" name="Bedrooms" required>
+
+            <label for="bathrooms">Number of Bathrooms:</label>
+            <input type="number" id="bathrooms" name="Bathrooms" required>
+
+            <label for="garages">Number of Garages:</label>
+            <input type="number" id="garages" name="Garages" required>
+
+            <label for="area">Area (in sq ft):</label>
+            <input type="number" id="area" name="Area" required>
+
+            <button type="submit">Get Valuation</button>
+        </form>
+        
+        {% if valuation_result %}
+        <div id="valuation-result">{{ valuation_result }}</div>
+        {% endif %}
+    </main>
+
+    <footer>
+        &copy; 2024 Real Estate Valuation. All rights reserved.
+    </footer>
+</body>
+</html>
